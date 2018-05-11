@@ -1,0 +1,13 @@
+#cover-row{
+	height: 800px;
+
+	background-image: url(../pictures/man2.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+
+#cover-form {
+	width: 30%;
+	margin: 350px 35%;
+}
