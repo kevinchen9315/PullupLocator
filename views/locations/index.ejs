@@ -1,0 +1,37 @@
+<% include ../partials/header %>
+
+<div class='container-fluid'>
+	<div class="jumbotron">
+		<div class='container header'>
+			<h1 class="display-4">Pullup Locations in Denver</h1>
+			<p class="lead">You can improve this page by adding locations!</p>
+			<a class="btn btn-primary btn-lg" href="/locations/new" role="button">Add a new Location</a>
+		</div>
+	</div>
+	<div class='row'>
+		<div class='col'>
+			<% locations.forEach((location)=>{ %>
+				<div class='row'>
+					<div class='col-lg-6 col-md-12 col-sml-12'>
+						<div id='indexImage'>
+							<a href='/locations/<%=location._id%>'>
+								<img class="img-fluid img-thumbnail" alt="Responsive image" src='<%=location.image%>'>
+							</a>
+
+						</div>					
+					</div>				
+					<div class='col-lg-6 col-md-12 col-sm-12'>
+						 
+						<h4><%=location.name%></h4>
+						<p><%=location.desc%></p>
+					</div>
+				</div>
+			<% }) %>
+		</div>
+		<div id='googlemaps' class='col'>
+			<div id="map"></div>
+		</div>
+	</div>
+</div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,30 @@
+<% include ../partials/header %>
+
+<div class='container-fluid'>
+	<div class='row'>
+		<div id='edit-form' class='column'> 
+			
+
+			<h3>Updating <%=location.name%></h3>
+		
+			<form action='/locations/<%=location._id%>?_method=PUT' method='POST'>
+				<div class='form-group'>
+					<label for='name'>Location Name</label>
+					<input id='name' type='string' class='form-control' name='location[name]' value='<%=location.name%>'  required>
+				</div>
+				<div class='form-group'>
+					<label for='desc'>Description</label>
+					<input id='desc' type='text' class='form-control' name='location[desc]' value='<%=location.desc%>'  required>
+				</div>
+				<div>
+					<input type='submit' class="btn btn-primary" value='Update!'>
+				</div>
+			</form>
+
+
+		</div>
+	</div>
+</div>
+
+
+<% include ../partials/footer %>

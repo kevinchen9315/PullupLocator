@@ -1,0 +1,40 @@
+.header{
+	text-align: center;
+}
+
+.navbar{
+	background-color: #e9ecef;
+	margin-bottom: 10px;
+}
+
+.delete-form{
+	display: inline;
+}
+
+#indexImage{
+	width: 100%;
+	height: 20vw;
+	max-height: 300px;
+	margin: 5px;
+}
+
+#indexImage img{
+	min-height: 100%;
+	max-height: 98%;
+	min-width: 100%;
+	object-fit: cover;
+}
+
+#map{
+	height: 60vh;
+	width: 100%;
+}
+
+#show-container{
+	margin: auto;
+	max-width: 700px;
+}
+
+#edit-form{
+	margin: auto;
+}

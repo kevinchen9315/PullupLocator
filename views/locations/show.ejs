@@ -1,0 +1,24 @@
+<% include ../partials/header %>
+
+<div class='container-fluid'>
+	<div class='row'>
+		<div id='show-container' class='column'>
+
+			<img class='img-fluid img-thumbnail' src='<%=location.image%>'>
+			<h4><%=location.name%></h4>
+			<p><%=location.desc%></p>
+			<p style='font-style:italic;'>Submitted By <%=location.author.username%></p>
+			
+
+			<% if(currentUser && location.author.id.equals(currentUser._id)){ %>
+				<a class='btn btn-warning' href='/locations/<%=location._id%>/edit'>Edit</a>
+				<form class='delete-form' action='/locations/<%=location._id%>?_method=DELETE' method='POST'>
+					<button class="btn btn-danger">Delete</button>
+				</form>
+			<% } %>
+
+		</div>
+	</div>
+</div>
+
+<% include ../partials/footer %>
