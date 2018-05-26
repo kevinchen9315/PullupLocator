@@ -5,6 +5,7 @@ middleware.isLoggedIn = (req, res, next) => {
 	if(req.isAuthenticated()){
 		return next();
 	}
+	req.flash("error", "Please Login First")
 	res.redirect("/login")
 }
 
@@ -19,11 +20,13 @@ middleware.checkOwnership = (req, res, next) => {
 				if(location.author.id.equals(req.user.id)){
 					return next()
 				}
-                res.redirect("back")
+				req.flash("error", "You don't have permission to do that")
+                res.redirect("/locations")
 			}
 		})
 	} else {
-		res.redirect("back")
+		req.flash("error", "Please Login First")
+		res.redirect("/locations")
 	}
 }
 

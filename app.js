@@ -5,7 +5,8 @@ const 	express 		= require('express'),
 		methodOverride  = require("method-override"), 
 		passport        = require('passport'),
         LocalStrategy   = require('passport-local'),
-        User 			= require('./models/users.js');
+        User 			= require('./models/users.js'),
+        flash           = require('connect-flash');
 
 const 	locationRoutes	= require('./routes/locations.js'),
 		loginRoutes		= require('./routes/login.js');
@@ -38,10 +39,15 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
-//Passes User data to every route
+//Allows flash messages
+app.use(flash());
+
+//res.locals sets "global" values in the EJS files
 app.use(function(req, res, next){
-    //Locals is a "global" object in the Res object
+    //Passes User data to every EJS file
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash('error')
+    res.locals.success = req.flash('success')
     next();
 })
 
