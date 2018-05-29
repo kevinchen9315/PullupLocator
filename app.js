@@ -24,7 +24,6 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 
 //DATABASEURL is set in environment variable. MongoDB is being hosted by MLAB
-console.log(process.env.DATABASEURL)
 mongoose.connect(process.env.DATABASEURL)
 
 //User Authentication
@@ -59,7 +58,7 @@ app.get("/", (req, res) => {
 app.use(loginRoutes)
 app.use("/locations", locationRoutes);
 
-app.listen("8080", () => {
+app.listen(process.env.PORT, process.env.IP, () => {
 	console.log("Server had started")
 })
 
