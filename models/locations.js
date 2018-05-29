@@ -4,6 +4,8 @@ const locationSchema = new mongoose.Schema({
 	name: String,
 	image: String,
 	desc: String,
+	lat: String,
+	lng: String,
 	author: {
 		id: {
 			type: mongoose.Schema.Types.ObjectId,

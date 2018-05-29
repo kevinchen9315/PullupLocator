@@ -2,7 +2,7 @@
 
 <div class='container-fluid'>
 	<div class='row'>
-		<div id='show-container' class='column'>
+		<div id='show-container' class='col-lg-6'>
 
 			<img class='img-fluid img-thumbnail' src='<%=location.image%>'>
 			<h4><%=location.name%></h4>
@@ -18,7 +18,38 @@
 			<% } %>
 
 		</div>
+		<div class='col-lg-6 googlemaps'>
+			<div id="map"></div>
+		</div>
+
 	</div>
 </div>
+
+
+<script type="text/javascript">
+	let locate = <%- JSON.stringify(location) %>;
+
+	function initMap() {
+		let map = new google.maps.Map(document.getElementById('map'), {
+			center: {
+				lat: parseFloat(locate.lat), 
+				lng: parseFloat(locate.lng)
+			},
+			zoom: 12
+		});
+
+
+		let marker = new google.maps.Marker({
+			title: locate.name,
+			map: map,
+			position: {
+				lat: parseFloat(locate.lat),
+				lng: parseFloat(locate.lng)
+			}
+		})
+
+	}	
+
+</script>
 
 <% include ../partials/footer %>

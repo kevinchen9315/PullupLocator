@@ -6,6 +6,7 @@ middleware.isLoggedIn = (req, res, next) => {
 		return next();
 	}
 	req.flash("error", "Please Login First")
+	req.session.redirectTo = '/locations/new'
 	res.redirect("/login")
 }
 

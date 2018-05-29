@@ -25,7 +25,6 @@ const imageFilter = (req, file, cb) => {
 const upload = multer({ storage: storage, fileFilter: imageFilter})
 
 //Connects to Image storage
-
 cloudinary.config({ 
   cloud_name: 'kevinchen9315', 
   api_key: process.env.CLOUDINARY_API_KEY, 
@@ -47,7 +46,7 @@ router.get("/new", middleware.isLoggedIn, (req, res) => {
 
 //Create
 router.post("/", middleware.isLoggedIn, upload.single('image'), (req, res) => {
-	
+
 	const createLocation = () => {
 		Location.create(req.body.location, (err, newLocation) => {
 			if (err) {

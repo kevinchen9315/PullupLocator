@@ -16,7 +16,7 @@ router.post("/register", (req, res) => {
             return res.render("register", {"error": err.message});
         } 
         passport.authenticate("local")(req, res, () => {
-            req.flash("success", "Login Successful!")
+            req.flash("success", "User Created!")
             res.redirect("/locations");
         });
     });
@@ -26,13 +26,31 @@ router.get("/login", (req, res) => {
     res.render("login.ejs");
 });
 
-router.post("/login", passport.authenticate("local",
-    {
-        successRedirect:"/locations",
-        failureRedirect:"/login"
-    })
-);
+router.post("/login", (req, res, next) => {
+    const redirectTo = req.session.redirectTo ? req.session.redirectTo : '/locations'
+    
+    passport.authenticate("local", (err, user, info) => {
+        if (err) {
+            console.log(err)
+            return next(err)
+        }
+        if(!user){
+            req.flash("error", "Invalid Username/Password")
+            return res.redirect('/login')
+        }
+        req.logIn(user, (err) => {
+            if (err) { 
+                return next(err)
+            }
+            delete req.session.redirectTo
+            return res.redirect(redirectTo)
+        })
+    })(req, res, next)
+})
 
+
+
+    
 router.get("/logout", function(req, res){
     req.logout();
     req.flash("success", "Logged You Out!")

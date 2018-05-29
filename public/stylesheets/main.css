@@ -11,7 +11,7 @@
 	display: inline;
 }
 
-#indexImage{
+.indexImage{
 	width: 100%;
 	height: 20vw;
 	max-height: 300px;
